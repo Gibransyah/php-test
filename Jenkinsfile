@@ -2,22 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repo') {
-    steps {
-        git branch: 'main', url: 'https://github.com/Gibransyah/php-test.git'
-    }
-}
-
-
         stage('Install Dependencies') {
             steps {
-                sh 'echo No composer.json, skip install dependencies'
+                sh 'echo "No composer.json, skip install dependencies"'
             }
         }
 
         stage('Run Unit Test') {
             steps {
-                sh 'echo Simulasi unit test PHP (dummy)'
+                sh 'echo "Simulasi unit test PHP (dummy)"'
+            }
+            post {
+                success {
+                    echo 'Tes berhasil!'
+                }
+                failure {
+                    echo 'Tes gagal!'
+                }
             }
         }
 
