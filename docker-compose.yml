@@ -1,27 +1,15 @@
 version: '3.8'
 
 services:
-  php-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: php-app
-    ports:
-      - "8081:80"  # PHP app bisa diakses di http://localhost:8081
-    volumes:
-      - .:/var/www/html
-    restart: unless-stopped
-
   jenkins:
     image: jenkins/jenkins:lts
     container_name: jenkins
     ports:
-      - "8080:8080"     # Jenkins UI
-      - "50000:50000"   # Agent
+      - "8080:8080"
+      - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-    restart: unless-stopped
+      - //var/run/docker.sock:/var/run/docker.sock  # untuk Windows gunakan `//`
 
 volumes:
   jenkins_home:
