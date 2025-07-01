@@ -3,10 +3,11 @@ pipeline {
 
     stages {
         stage('Clone Repo') {
-            steps {
-                git 'https://github.com/Gibransyah/php-test.git'
-            }
-        }
+    steps {
+        git branch: 'main', url: 'https://github.com/Gibransyah/php-test.git'
+    }
+}
+
 
         stage('Install Dependencies') {
             steps {
